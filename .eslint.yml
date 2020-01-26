@@ -1,7 +1,7 @@
-parseOptions:
+parserOptions:
   ecmaVersion: 2018
 
-env: 
+env:
   es6: true
   node: true
 
