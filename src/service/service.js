@@ -1,3 +1,7 @@
 'use strict';
 
-console.log(`Hello, world!`);
+const version = require(`./cli/version`);
+const help = require(`./cli/help`);
+
+version.run();
+help.run();
