@@ -1,7 +1,7 @@
 # Учебный проект «Куплю. Продам» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Куренков](https://up.htmlacademy.ru/nodejs/3/user/80269).
-* Наставник: [Вадим Шевяков](https://htmlacademy.ru/profile/id574589).
+* Наставник: [Дмитрий Мирошниченко](https://htmlacademy.ru/profile/id591417).
 
 ---
 
