@@ -6,6 +6,7 @@ const {
   getShuffledArray,
   getZeroPaddedNumber,
 } = require(`../../utils`);
+const {ExitCode} = require(`../../constants`);
 
 
 const DEFAULT_COUNT = 1;
@@ -108,17 +109,15 @@ module.exports = {
     const [count] = args;
     const offersCount = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
-    if (offersCount > 1000 || offersCount < 1) {
+    if (offersCount > MAX_COUNT || offersCount < DEFAULT_COUNT) {
       console.error(`Генерируется не менее 1, но не более 1000 объявлений.`);
-      process.exit(1);
+      process.exit(ExitCode.error);
     }
 
     const offers = Array(offersCount)
       .fill({})
       .map(generateOffer);
     const content = JSON.stringify(offers);
-
-    console.log(offers);
 
     fs.writeFile(FILE_NAME, content, (err) => {
       if (err) {
