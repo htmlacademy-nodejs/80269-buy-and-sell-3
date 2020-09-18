@@ -80,22 +80,16 @@ const generateOffer = () => {
     getZeroPaddedNumber(getRandomInt(PictureRange.MIN, PictureRange.MAX), 2)
   }.jpg`;
 
-  const sentencesDonor = SENTENCES.slice();
-  const description = Array(getRandomInt(SentenceRange.MIN, SentenceRange.MAX))
-    .fill(``)
-    .map(() => sentencesDonor
-      .splice(getRandomInt(0, sentencesDonor.length - 1), 1)[0])
+  const description = getShuffledArray(SENTENCES)
+    .slice(0, getRandomInt(SentenceRange.MIN, SentenceRange.MAX))
     .join(` `);
 
   const type = Math.random() > 0.5 ? OfferType.OFFER : OfferType.SALE;
 
   const sum = getRandomInt(SumRange.MIN, SumRange.MAX);
 
-  const categoriesDonor = CATEGORIES.slice();
-  const category = Array(getRandomInt(1, CATEGORIES.length - 1))
-    .fill(``)
-    .map(() => categoriesDonor
-      .splice(getRandomInt(0, categoriesDonor.length - 1), 1)[0]);
+  const category = getShuffledArray(CATEGORIES)
+      .slice(0, getRandomInt(1, CATEGORIES.length - 1));
 
   return {
     title,
