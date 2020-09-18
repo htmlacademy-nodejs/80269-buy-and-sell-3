@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require(`fs`);
 const {
   getRandomInt,
   getShuffledArray,
@@ -93,6 +94,12 @@ module.exports = {
     const content = JSON.stringify(offers);
 
     console.log(offers);
-    console.log(content);
-  }
+    fs.writeFile(FILE_NAME, content, (err) => {
+      if (err) {
+        console.error(`Невозможно записать данные в файл!`);
+      }
+
+      console.info(`Файл с моковыми данными успешно создан!`);
+    });
+  },
 };
