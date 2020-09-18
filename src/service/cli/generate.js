@@ -4,6 +4,7 @@ const fs = require(`fs`);
 const {
   getRandomInt,
   getShuffledArray,
+  getZeroPaddedNumber,
 } = require(`../../utils`);
 
 
@@ -24,6 +25,11 @@ const TITLES = [
   `Куплю детские санки.`,
 ];
 
+const PictureRange = {
+  MIN: 1,
+  MAX: 16,
+};
+
 const SENTENCES = [
   `Товар в отличном состоянии.`,
   `Пользовались бережно и только по большим праздникам.,`,
@@ -42,14 +48,10 @@ const SENTENCES = [
   `Не пытайтесь торговаться. Цену вещам я знаю.`,
 ];
 
-const CATEGORIES = [
-  `Книги`,
-  `Разное`,
-  `Посуда`,
-  `Игры`,
-  `Животные`,
-  `Журналы`,
-];
+const SentenceRange = {
+  MIN: 1,
+  MAX: 5,
+};
 
 const OfferType = {
   OFFER: `offer`,
@@ -62,17 +64,46 @@ const SumRange = {
   MAX: 100000,
 };
 
+const CATEGORIES = [
+  `Книги`,
+  `Разное`,
+  `Посуда`,
+  `Игры`,
+  `Животные`,
+  `Журналы`,
+];
 
 const generateOffer = () => {
-  const title = TITLES[getRandomInt(0, TITLES.length)];
+  const title = TITLES[getRandomInt(0, TITLES.length - 1)];
+
+  const picture = `item${
+    getZeroPaddedNumber(getRandomInt(PictureRange.MIN, PictureRange.MAX), 2)
+  }.jpg`;
+
+  const sentencesDonor = SENTENCES.slice();
+  const description = Array(getRandomInt(SentenceRange.MIN, SentenceRange.MAX))
+    .fill(``)
+    .map(() => sentencesDonor
+      .splice(getRandomInt(0, sentencesDonor.length - 1), 1)[0])
+    .join(` `);
+
+  const type = Math.random() > 0.5 ? OfferType.OFFER : OfferType.SALE;
+
+  const sum = getRandomInt(SumRange.MIN, SumRange.MAX);
+
+  const categoriesDonor = CATEGORIES.slice();
+  const category = Array(getRandomInt(1, CATEGORIES.length - 1))
+    .fill(``)
+    .map(() => categoriesDonor
+      .splice(getRandomInt(0, categoriesDonor.length - 1), 1)[0]);
 
   return {
     title,
-    // picture,
-    // description,
-    // type,
-    // sum,
-    // category,
+    picture,
+    description,
+    type,
+    sum,
+    category,
   };
 };
 
@@ -94,6 +125,7 @@ module.exports = {
     const content = JSON.stringify(offers);
 
     console.log(offers);
+
     fs.writeFile(FILE_NAME, content, (err) => {
       if (err) {
         console.error(`Невозможно записать данные в файл!`);

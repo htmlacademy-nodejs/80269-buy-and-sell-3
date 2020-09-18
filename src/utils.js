@@ -15,8 +15,15 @@ const getShuffledArray = (array) => {
   return array;
 };
 
+const getZeroPaddedNumber = (number, zeroCount) => {
+  const helperNumber = 10 ** zeroCount;
+  return number >= helperNumber
+    ? number
+    : `${helperNumber + number}`.slice(1);
+};
 
 module.exports = {
   getRandomInt,
   getShuffledArray,
+  getZeroPaddedNumber,
 };
