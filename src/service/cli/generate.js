@@ -1,5 +1,6 @@
 'use strict';
 
+const chalk = require('chalk');
 const fs = require(`fs`);
 const {
   getRandomInt,
@@ -110,7 +111,7 @@ module.exports = {
     const offersCount = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
     if (offersCount > MAX_COUNT || offersCount < DEFAULT_COUNT) {
-      console.error(`Генерируется не менее 1, но не более 1000 объявлений.`);
+      console.error(chalk.red(`Генерируется не менее 1, но не более 1000 объявлений.`));
       process.exit(ExitCode.error);
     }
 
@@ -121,10 +122,10 @@ module.exports = {
 
     fs.writeFile(FILE_NAME, content, (err) => {
       if (err) {
-        console.error(`Невозможно записать данные в файл!`);
+        console.error(chalk.red(`Невозможно записать данные в файл!`));
       }
 
-      console.info(`Файл с моковыми данными успешно создан!`);
+      console.info(chalk.green(`Файл с моковыми данными успешно создан!`));
     });
   },
 };
