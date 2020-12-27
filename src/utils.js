@@ -29,7 +29,7 @@ const getZeroPaddedNumber = (number, zeroCount) => {
 const readFileContent = async (filePath) => {
   try {
     const fileContent = await fs.readFile(filePath, `utf8`);
-    return fileContent.split(`\n`);
+    return fileContent.split(`\n`).filter((el) => Boolean(el));
   } catch (err) {
     console.error(chalk.red(err));
     return [];
