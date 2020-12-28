@@ -89,10 +89,16 @@ module.exports = {
       console.error(chalk.red(`Генерируется не менее 1, но не более 1000 объявлений.`));
       process.exit(ExitCode.error);
     }
-
-    const titles = await readFileContent(FILE_TITLES_NAME);
-    const sentences = await readFileContent(FILE_SENTENCES_NAME);
-    const categories = await readFileContent(FILE_CATEGORIES_NAME);
+    
+    const [
+      titles,
+      sentences,
+      categories,
+    ] = await Promise.all([
+      readFileContent(FILE_TITLES_NAME),
+      readFileContent(FILE_SENTENCES_NAME),
+      readFileContent(FILE_CATEGORIES_NAME),
+    ]);
 
     const offers = generateOffers(offersCount, titles, sentences, categories);
 
