@@ -1,5 +1,6 @@
 'use strict';
 
+
 const chalk = require(`chalk`);
 const fs = require(`fs`).promises;
 const {
@@ -89,7 +90,7 @@ module.exports = {
       console.error(chalk.red(`Генерируется не менее 1, но не более 1000 объявлений.`));
       process.exit(ExitCode.error);
     }
-    
+
     const [
       titles,
       sentences,
