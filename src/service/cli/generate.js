@@ -1,6 +1,5 @@
 'use strict';
 
-
 const chalk = require(`chalk`);
 const fs = require(`fs`).promises;
 const {
@@ -14,27 +13,22 @@ const {ExitCode} = require(`../../constants`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
-
 const FILE_NAME = `mocks.json`;
 const FILE_SENTENCES_NAME = `./data/sentences.txt`;
 const FILE_TITLES_NAME = `./data/titles.txt`;
 const FILE_CATEGORIES_NAME = `./data/categories.txt`;
-
 const PictureRange = {
   MIN: 1,
   MAX: 16,
 };
-
 const SentenceRange = {
   MIN: 1,
   MAX: 5,
 };
-
 const OfferType = {
   OFFER: `offer`,
   SALE: `sale`,
 };
-
 const SumRange = {
   MIN: 1000,
   MAX: 100000,

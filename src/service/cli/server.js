@@ -1,6 +1,5 @@
 'use strict';
 
-
 const chalk = require(`chalk`);
 const fs = require(`fs`).promises;
 const http = require(`http`);
@@ -9,6 +8,7 @@ const HttpCode = require(`../../constants`).HttpCode;
 
 const DEFAULT_PORT = 3000;
 const FILENAME = `mocks.json`;
+const NOT_FOUND_MESSAGE = `Not found!`;
 
 
 module.exports = {
@@ -37,8 +37,6 @@ module.exports = {
     };
 
     const onClientConnect = async (req, res) => {
-      const notFoundMessage = `Not found!`;
-
       switch (req.url) {
         case `/`:
           try {
@@ -49,12 +47,12 @@ module.exports = {
               .join(``);
             sendResponse(res, HttpCode.OK, `<ul>${message}</ul>`);
           } catch (err) {
-            sendResponse(res, HttpCode.NOT_FOUND, notFoundMessage);
+            sendResponse(res, HttpCode.NOT_FOUND, NOT_FOUND_MESSAGE);
           }
 
           break;
         default:
-          sendResponse(res, HttpCode.NOT_FOUND, notFoundMessage);
+          sendResponse(res, HttpCode.NOT_FOUND, NOT_FOUND_MESSAGE);
           break;
       }
     };
