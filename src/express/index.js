@@ -9,7 +9,11 @@ const myRoutes = require(`./routes/my-routes.js`);
 
 const DEFAULT_PORT = 8081;
 const PUBLIC_DIR = `public`;
+const TEMPLATES_DIR = `templates`;
 const app = express();
+
+app.set(`views`, path.resolve(__dirname, TEMPLATES_DIR));
+app.set(`view engine`, `pug`);
 
 app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
 app.use(`/offers`, offerRoutes);
