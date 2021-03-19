@@ -7,11 +7,9 @@ const myRouter = new Router();
 
 myRouter.get(`/`, (req, res) => {
   res.render(`my-tickets`);
-  // res.send(`/my`);
 });
 myRouter.get(`/comments`, (req, res) => {
   res.render(`comments`);
-  // res.send(`/my/comments`);
 });
 
 module.exports = myRouter;
