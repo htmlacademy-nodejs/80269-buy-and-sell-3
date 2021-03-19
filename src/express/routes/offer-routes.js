@@ -7,16 +7,17 @@ const offersRouter = new Router();
 
 offersRouter.get(`/category/:id`, (req, res) => {
   res.render(`category`);
-  // res.send(`/offers/category/${req.params.id}`);
 });
 offersRouter.get(`/add`, (req, res) => {
-  res.send(`/offers/add`);
+  res.render(`new-ticket`);
 });
 offersRouter.get(`/edit/:id`, (req, res) => {
-  res.send(`/offers/edit/${req.params.id}`);
+  res.render(`ticket-edit`);
+  // res.send(`/offers/edit/${req.params.id}`);
 });
 offersRouter.get(`/:id`, (req, res) => {
-  res.send(`/offers/${req.params.id}`);
+  res.render(`ticket`);
+  // res.send(`/offers/${req.params.id}`);
 });
 
 module.exports = offersRouter;
