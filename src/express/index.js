@@ -19,8 +19,11 @@ app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
 app.use(`/offers`, offerRoutes);
 app.use(`/`, mainRoutes);
 app.use(`/my`, myRoutes);
-app.use((req, res, next) => {
+app.use((req, res, _next) => {
   res.status(404).render(`errors/404`);
+});
+app.use((err, req, res, _next) => {
+  res.status(500).render(`errors/500`);
 });
 
 app.listen(DEFAULT_PORT, () => {
