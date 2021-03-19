@@ -6,7 +6,8 @@ const {Router} = require(`express`);
 const offersRouter = new Router();
 
 offersRouter.get(`/category/:id`, (req, res) => {
-  res.send(`/offers/category/${req.params.id}`);
+  res.render(`category`);
+  // res.send(`/offers/category/${req.params.id}`);
 });
 offersRouter.get(`/add`, (req, res) => {
   res.send(`/offers/add`);
