@@ -5,6 +5,7 @@ const path = require(`path`);
 const offerRoutes = require(`./routes/offer-routes.js`);
 const mainRoutes = require(`./routes/main-routes.js`);
 const myRoutes = require(`./routes/my-routes.js`);
+const HttpCode = require(`../constants.js`).HttpCode;
 
 
 const DEFAULT_PORT = 8081;
@@ -19,11 +20,11 @@ app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
 app.use(`/offers`, offerRoutes);
 app.use(`/`, mainRoutes);
 app.use(`/my`, myRoutes);
-app.use((req, res, _next) => {
-  res.status(404).render(`errors/404`);
+app.use((_req, res, _next) => {
+  res.status(HttpCode.NOT_FOUND).render(`errors/404`);
 });
-app.use((err, req, res, _next) => {
-  res.status(500).render(`errors/500`);
+app.use((_err, _req, res, _next) => {
+  res.status(HttpCode.INTERNAL_SERVER_ERROR).render(`errors/500`);
 });
 
 app.listen(DEFAULT_PORT, () => {
